@@ -48,8 +48,9 @@ async def process_name(message: types.Message, state: FSMContext):
     answer = GoogleTranslator(target=lang_code).translate(
         text=f"Ищу погоду в населенном пункте: {message.text}")
     await message.reply(answer)
-    user_answer = GoogleTranslator().translate(text=message.text)
+    user_answer = GoogleTranslator(source=lang_code, target=lang_code).translate(text=message.text)
     tr_res = GoogleTranslator().translate(text=message.text)
+    tr_res = tr_res.replace(" ", "%20")
     await get_coords_of_object(tr_res, message=message, user_input=user_answer)
 
 
