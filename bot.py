@@ -64,7 +64,7 @@ async def get_coords_of_object(name: str, message: types.Message, user_input):
     weather = data["weather"]
     answer = f"""Погода в городе: {user_input}
         В текущий момент:
-        {get_type_of_weather((weather[0])["id"])} {get_emoji_of_weather(weather[0]["id"])} 
+        {GoogleTranslator(source="en", target=lang_code).translate(get_type_of_weather((weather[0])["id"]))} {get_emoji_of_weather(weather[0]["id"])} 
 
         Температура 🌡️:
         В настоящий момент: {round(data['main']['temp'] - 273.15)}
